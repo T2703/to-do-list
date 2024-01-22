@@ -24,15 +24,31 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.createTaskButton {
+  background-color: #007bff;
+  color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  width: 50%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.createTaskButton:hover {
+  background-color: #0056b3;
+}
+
+.react-calendar__month-view__weekdays {
+  text-decoration: underline;
+}
+
+.dropdown {
+  position: absolute;
+  top: 0px; 
+  right: 50px; 
+  width: 100px; 
+  z-index: 1; 
 }

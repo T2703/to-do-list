@@ -1,0 +1,38 @@
+/* Container styling for the calendar */
+.customCalendarBox {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Calendar styling */
+  .react-calendar {
+    width: 100%;
+    border: none;
+  }
+  
+  /* Day styling */
+  .react-calendar__tile {
+    padding: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1em;
+    color: #101010;
+    transition: background-color 0.3s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+  }
+  
+  .react-calendar__tile:hover {
+    background-color: #5a5a5a79;
+  }
+  
+  /* Selected day styling */
+  .react-calendar__tile--active {
+    color: #fff;
+    background-color: #007bff;
+  }
+  
