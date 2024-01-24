@@ -3,6 +3,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 Still in a W.I.P.
 
+Basically this is a to-do-list web app where people can pretty much put down their tasks and figure out what day and time it is due. 
+
 ## Available Scripts
 
 In the project directory, you can run:
