@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import { Link, useNavigate } from 'react-router-dom';
 import ReactDropdown from 'react-dropdown';
@@ -24,10 +24,19 @@ function App() {
     { id: 1, title: 'Task 1', date: '1/19/2024', time: "11:00"},
     { id: 2, title: 'Task 2', date: '1/20/2024', time: "12:00"},
     { id: 3, title: 'Task 1', date: '1/19/2024', time: "11:00"},
-    { id: 4, title: 'Task 2', date: '1/20/2024', time: "12:00"},
-    { id: 5, title: 'Task 1', date: '1/19/2024', time: "11:00"},
-    { id: 6, title: 'Task 2', date: '1/20/2024', time: "12:00"},
   ]);
+
+  const [backendData, setBackendData] = useState([{}]);
+
+  useEffect(() => {
+    fetch("/api").then(
+      response => response.json()
+    ).then(
+      data => {
+        setBackendData(data);
+      }
+    );
+  }, []);
 
 
   const handleCreateTask = () => {

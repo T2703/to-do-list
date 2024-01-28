@@ -3,6 +3,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 Still in a W.I.P.
 
+Also to run the backend server use npm run dev.
+
 ## Available Scripts
 
 In the project directory, you can run:
