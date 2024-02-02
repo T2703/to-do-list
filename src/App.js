@@ -16,16 +16,24 @@ const taskOptions = [
 ];
 
 function App() {
+  // General stuff
   const greetingMessage = Greeting();
   const [selectedDate, setSelectedDate] = useState(new Date());
   const navigate = useNavigate(); 
   const [selectedTask, setSelectedTask] = useState(taskOptions[0]);
+
   const [tasks, setTasks] = useState([
     { id: 1, title: 'Task 1', date: '1/19/2024', time: "11:00"},
     { id: 2, title: 'Task 2', date: '1/20/2024', time: "12:00"},
     { id: 3, title: 'Task 1', date: '1/19/2024', time: "11:00"},
   ]);
 
+  // Search bar data.
+  const searchBar = () => {}
+  const [searchInput, setSearchInput] = useState("");
+  let filteredTasks = tasks;
+
+  // Backend magic.
   const [backendData, setBackendData] = useState([{}]);
 
   useEffect(() => {
@@ -40,17 +48,16 @@ function App() {
 
 
   const handleCreateTask = () => {
-    // Add logic to create a new task
     console.log('Creating a new task');
     navigate('/create-form');
   };
+
 
   const handleLoginButton = () => {
     navigate('/login-page');
   };
 
   const handleCalendarChange = (date) => {
-    // Update the selectedDate state when the user selects a date
     setSelectedDate(date);
   };
 
@@ -61,6 +68,17 @@ function App() {
       handleLoginButton();
     }
   };
+
+  const handleSearchChange = (e) => {
+    e.preventDefault();
+    setSearchInput(e.target.value);
+  };
+
+  if (searchInput.length > 0) {
+    filteredTasks = tasks.filter((task) => {
+      return task.title.toLowerCase().includes(searchInput.toLowerCase());
+    });
+  }
 
   const formattedMonth = selectedDate.toLocaleDateString(undefined, { month: 'long' });
 
@@ -74,30 +92,38 @@ function App() {
         onChange={handleTaskChange}
       />
 
-      <div className="customCalendarBox">
+    <div className="searchBar">
+      <input
+        type="text"
+        placeholder="Search for any tasks"
+        onChange={handleSearchChange}
+        value={searchInput} />
+    </div>
+
+    <div className="customCalendarBox">
       <h1>{formattedMonth}</h1>
       <Calendar
         onChange={handleCalendarChange}
         value={selectedDate} 
         showNavigation={false}
       />
-      </div>
+    </div>
       
-      <button className="createTaskButton" onClick={handleCreateTask}>Create a new task</button>
-      <p>Selected Date: {selectedDate.toDateString()}</p>
-      <p>List of tasks:</p>
+    <button className="createTaskButton" onClick={handleCreateTask}>Create a new task</button>
+    <p>Selected Date: {selectedDate.toDateString()}</p>
+    <p>List of tasks:</p>
 
-      <div className="card-container">
-        {tasks.map((task) => (
-          <TaskCard key={task.id} task={task} />
-        ))}
-      </div>
+    <div className="card-container">
+      {filteredTasks.map((task) => (
+      <TaskCard key={task.id} task={task} />
+      ))}
+    </div>
 
     </div>
   );
 }
 
-
+// As the name states, this greets you based on the time of day.
 function Greeting() {
   var date = new Date();
   var time = date.getHours();
